@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_cancel_admission_form" model="ir.ui.view">
+        <field name="name">student.tag.form</field>
+        <field name="model">cancel.admission.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="admission_id" invisible="context.get('hide_appointment')"/>
+                            <field name="reason"/>
+                        </group>
+                        <group>
+                            <field name="date_cancel" invisible="context.get('hide_appointment')"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_cancel" string="Cancel appointment" type="object"
+                                class="btn-primary" data-hotkey="q"/>
+                        <button name="cancel" string="Discard" class="btn-secondary" data-hotkey="z"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cancel_admission" model="ir.actions.act_window">
+        <field name="name">Cancel Admission</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cancel.admission.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="cancel_admission_menu"
+            name="Cancel Admission"
+            action="action_cancel_admission"
+            parent="admission_main_menu"
+            sequence="20"/>
+</odoo>

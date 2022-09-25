@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_school_male_student" model="ir.actions.act_window">
+        <field name="name">Male Student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_gender':'male', 'hide_gender':1}</field>
+        <field name="domain">[('gender','=','male')]</field>
+        <field name="help" type="html">
+            <p class="o_view_noncontent_smiling_face">
+                List Your First  Male Student!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="male_student_menu"
+            name="Male Student"
+            action="action_school_male_student"
+            parent="student_main_menu"
+            sequence="10"/>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_odoo_playground_form" model="ir.ui.view">
+        <field name="name">odoo.playground.form</field>
+        <field name="model">odoo.playground</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="model_id"/>
+                        <field name="code" widget="ace" options="{'mode':'python'}"/>
+                    </group>
+                    <group>
+                        <div>
+                            <button name="action_execute" string="Execute" type="object"
+                                    data-hotkey="q"
+                                    class="btn-primary"/>
+                            <button name="action_clear" string="Clear" type="object"
+                                    data-hotkey="c"
+                                    class="fa fa-refresh"/>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="result"/>
+                    </group>
+                    <group>
+                        <div style="margin-top:4px;">
+                            <h3>Help</h3>
+                            <p>Various available function and variables available in odoo environment:</p>
+                            <ul>
+                                <li><code>self</code>: Current Object on which the action is triggered
+                                </li>
+                                <li><code>env</code>: Current Environment on which the action is triggered
+                                </li>
+                                <li><code>self.env.user</code>: Return the current user (as an instance)
+                                </li>
+                                <li><code>self.env.is_system</code>: Return whether the current user has group
+                                    "Settings" or
+                                    is an superuser mode
+                                </li>
+                                <li><code>self.env.is_admin</code>: Return whether the current user has group "Access
+                                    Right"
+                                    or is an superuser mode
+                                </li>
+                                <li><code>self.env.is_superuser</code>: Return whether the Environment is an superuser
+                                    mode
+                                </li>
+                                <li><code>self.env.company</code>: Return the current Company (as an instance)
+                                </li>
+                                <li><code>self.env.lang</code>: Return the current Language code
+                                </li>
+                            </ul>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_odoo_playground" model="ir.actions.act_window">
+        <field name="name">Play Ground</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo.playground</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                List Your First Student!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+            id="odoo_playground_menu"
+            name="Play Ground"
+            parent="technical_menu"
+            action="action_odoo_playground"
+            sequence="100"/>
+</odoo>

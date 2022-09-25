@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_student_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <table class="table table-condensed" style="border: 3px solid black !important;">
+                                    <tr>
+                                        <td width="40%">
+                                            <p style="text-align:center;padding-top:10px;">
+                                                <img t-if="not o.image"
+                                                     t-att-src="'/web/static/src/img/placeholder.png'" height="140"
+                                                     border="1" width="120"/>
+                                                <img t-if="o.image"
+                                                     t-att-src="'data:image/png;base64,%s' % to_text(o.image)"
+                                                     height="140" border="1" width="120"/>
+                                            </p>
+                                        </td>
+                                        <td width="60%">
+                                            <table>
+                                                <tr>
+                                                    <td colspan="3" class="text-center">
+                                                        <p style="color:#006400; font-weight: 900;">
+                                                            <span t-field="o.name"/>
+                                                        </p>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <strong>Age:</strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>:</span>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="o.age"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <strong>Reference:</strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>:</span>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="o.ref"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div>
+                                                <img t-att-src="'/report/barcode/Code128/'+o.name" style="width:150px;height:75px"
+                                                     alt="QRcode"/>
+                                            </div>
+<!--                                            <div>-->
+<!--                                                <span t-field="o.name" t-options="{'widget': 'barcode','humanreadable': 1,'width': 600,'height': 100}"/>-->
+<!--                                            </div>-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <t t-if="o.admission_ids">
+                            <strong>
+                                <span>Admission Details</span>
+                            </strong>
+                            <table class="table table-sm o_main_table" name="admission">
+                                <thead>
+                                    <tr>
+                                        <th name="th_sl_no" class="text-left">
+                                            <span>Sl</span>
+                                        </th>
+                                        <th name="th_reference" class="text-left">
+                                            <span>Reference</span>
+                                        </th>
+                                        <th name="th_age" class="text-left">
+                                            <span>Age</span>
+                                        </th>
+                                        <th name="th_teacher" class="text-left">
+                                            <span>Teacher</span>
+                                        </th>
+                                        <th name="th_state" class="text-left">
+                                            <span>Student State</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-set="admission_count" t-value="0"/>
+                                <t t-foreach="o.admission_ids" t-as="line">
+                                    <t t-set="admission_count" t-value="admission_count + 1"/>
+                                    <tr>
+                                        <td>
+                                            <span t-esc="line_index+1"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.age"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.teacher_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.state"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4">
+                                        <strong>Total Admissions</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="admission_count"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_odoo_query_form" model="ir.ui.view">
+        <field name="name">odoo.query.form</field>
+        <field name="model">odoo.query</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="python_1"/>
+                <field name="result_1"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_odoo_query" model="ir.actions.act_window">
+        <field name="name">Odoo Query</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo.query</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Write Your First Query!
+            </p>
+        </field>
+
+    </record>
+
+    <menuitem
+            id="odoo_query_menu"
+            name="Query"
+            action="action_odoo_query"
+            parent="technical_menu"
+            sequence="10"/>
+</odoo>

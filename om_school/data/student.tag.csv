@@ -1,0 +1,4 @@
+id,name,active
+student_tag_ceo,CEO,True
+student_tag_vvip,VVIP,True
+student_tag_mrs,Mrs,True

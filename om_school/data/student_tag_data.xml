@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <data>
+        <record id="student_tag_vip" model="student.tag" forcecreate="0">
+            <field name="name">VIP</field>
+        </record>
+        <record id="student_tag_adult" model="student.tag" forcecreate="0">
+            <field name="name">Adult</field>
+        </record>
+        <record id="student_tag_kid" model="student.tag" forcecreate="0">
+            <field name="name">Kid</field>
+        </record>
+        <record id="student_tag_mr" model="student.tag" forcecreate="0">
+            <field name="name">Mr</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>
